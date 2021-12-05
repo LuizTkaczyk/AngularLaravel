@@ -2,13 +2,13 @@
 
 import { FormGroup } from "@angular/forms";
 
-export function MustMatch(controlName: string, matchingControlName:string) {
+export function MustMatch(password: string, confirmPassword:string) {
     return (formGroup: FormGroup) => {
-        const control = formGroup.controls[controlName]
-        const matchingControl = formGroup.controls[matchingControlName]
+        const control = formGroup.controls[password]
+        const matchingControl = formGroup.controls[confirmPassword]
 
 
-        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+        if (matchingControl.errors && !matchingControl.errors["mustMatch"]) {
             return 
         }
         if (control.value !== matchingControl.value) {
