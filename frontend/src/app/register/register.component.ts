@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { MustMatch } from '../confirmed.validator';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,11 +18,15 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   createForm() {
+    
     this.form = this.formBuilder.group({
       name: [null, Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password:['', [Validators.required, Validators.minLength(6)]],
       confirmPassword:['', [Validators.required]]
+    },
+    {
+      validator:MustMatch('password', 'confirmPassword')
     })
   }
 
@@ -33,6 +39,7 @@ export class RegisterComponent implements OnInit {
     return this.form.controls
   }
 
+  // verifica se todas as condições do formulario são válidas, para assim envia-las para o banco de dados
   submit(){
     this.submitted = true
     if(this.form.invalid){

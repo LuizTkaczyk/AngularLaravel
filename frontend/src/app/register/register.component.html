@@ -11,14 +11,14 @@
             <label for="name">Nome</label>
             <input type="text" 
             formControlName="name" 
-            [ngClass]="{is-invalid:submitted && f.name.errors}" 
+            [ngClass]="{'is-invalid':submitted && f['name'].errors}" 
             name="name"
             class="form-control" 
             placeholder="Digite o seu nome">
 
             <!-- Essa div ira aparecer caso o campo nome esteja vazio -->
-            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                <div *ngIf="f.name.errors.required">
+            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                <div *ngIf="f['name'].errors['required']">
                     O nome é obrigatorio!
                 </div>
             </div>
@@ -30,19 +30,19 @@
             <label for="email">E-mail</label>
             <input type="email"
             formControlName="email"
-            [ngClass]="{is-invalid:submitted && f.email.errors}" 
+            [ngClass]="{'is-invalid':submitted && f['email'].errors}" 
             name="email" 
             class="form-control" 
             placeholder="Digite o seu e-mail">
             
             <!-- Essa div ira aparecer caso o campo email esteja vazio -->
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
                 
-                <div *ngIf="f.email.errors.required">
+                <div *ngIf="f['email'].errors'['required']'">
                     O email é obrigatorio!
                 </div>
 
-                <div *ngIf="f.email.errors.email">
+                <div *ngIf="f['email'].errors['email']">
                     Insira um email válido!
                 </div>
 
@@ -57,19 +57,19 @@
             <label for="password">Senha</label>
             <input type="password" 
             formControlName="password"
-            [ngClass]="{is-invalid:submitted && f.password.errors}" 
+            [ngClass]="{'is-invalid':submitted && f['password'].errors}" 
             name="password" 
             class="form-control" 
             placeholder="Digite sua senha">
 
              <!-- Essa div ira aparecer caso o campo senha esteja vazio -->
-             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+             <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
                 
-                <div *ngIf="f.password.errors.required">
+                <div *ngIf="f['password'].errors['required']">
                     A senha é obrigatória!
                 </div>
 
-                <div *ngIf="f.password.errors.minlength">
+                <div *ngIf="f['password'].errors['minlength']">
                     Senha com no mínimo 6 caracteres!
                 </div>
 
@@ -84,17 +84,19 @@
             <label for="confirmPassword">Confirme a senha</label>
             <input type="password" 
             formControlName="confirmPassword"
-            [ngClass]="{is-invalid:submitted && f.confirmPassword.errors}" 
+            [ngClass]="{'is-invalid':submitted && f['confirmPassword'].errors}" 
             name="confirmPassword" 
             class="form-control"
-             placeholder="Confirma a sua senha">
+            placeholder="Confirma a sua senha">
 
-            <div *ngIf="f.confirmPassword.errors.required">
-                Confirmar a senha é obrigatório!
-            </div>
+            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                <div *ngIf="f['confirmPassword'].errors['required']">
+                    Confirmar a senha é obrigatório!
+                </div>
 
-            <div *ngIf="f.confirmPassword.errors.mustMath">
-                Senha não conferem
+                <div *ngIf="f['confirmPassword'].errors['mustMatch']">
+                    Senhas não conferem
+                </div>
             </div>
 
 
